@@ -1,0 +1,27 @@
+* Nginx configuration for Piwik
+
+** Introduction 
+
+   This is a nginx configuration for running [[http://piwik.org][Piwik]].
+
+   It assumes that the domain affect to Piwik is stats.example.com.
+
+   Change accordingly to reflect your setup.
+
+** Features
+
+   1. Filtering of invalid HTTP =Host= headers.
+
+   2. Filtering of referrer when serving the piwik JS or any other
+      static file.
+
+   3. Hiding of all text files.
+
+   4. Constraining of PHP file handling. Only =index.php= and
+      =piwik.php= are allowed. All other attempts to run a PHP file
+      return a 404.
+
+** FastCGI configuration
+
+   The FastCGI configuration uses a UNIX socket. I provide an [[http://github.com/perusio/php-cgi][init
+   script]] for FastCGI.
