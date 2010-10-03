@@ -53,7 +53,7 @@ server {
         }
 
         # Relay all index.php requests to fastcgi.
-        location ~* ^/(?:index|piwik).php$ {
+        location ~* ^/(?:index|piwik)\.php$ {
                 fastcgi_pass unix:/tmp/php-cgi/php-cgi.socket;
         }
 
