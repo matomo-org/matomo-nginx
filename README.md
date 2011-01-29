@@ -82,9 +82,21 @@
  
    It may work or not on Ubuntu. Since Ubuntu seems to appreciate more
    finding semi-witty names for their releases instead of making clear
-   what's the status of the software included, meaning. Is it
+   what's the status of the software included. Is it
    **stable**? Is it **testing**? Is it **unstable**? The package may
    work with your currently installed environment or not. I don't have
    the faintest idea which release to advise. So you're on your
    own. Generally the APT machinery will sort out for you any
    dependencies issues that might exist.
+
+
+## My other Nginx configs on github
+
+   + [Drupal](https://github.com/perusio/drupal-with-nginx "Drupal
+     Nginx configuration")
+     
+   + [WordPress](https://github.com/perusio/wordpress-nginx "WordPress Nginx
+     configuration")
+     
+   + [Chive](https://github.com/perusio/chive-nginx "Chive Nginx
+     configuration")
