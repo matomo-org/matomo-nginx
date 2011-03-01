@@ -52,17 +52,23 @@ server {
         try_files $uri /index.php;        
     }
 
-    ## Relay all index.php and piwik.php requests to fastcgi.
-    location ~* ^/(?:index|piwik)\.php$ {
-        fastcgi_pass unix:/tmp/php-cgi/php-cgi.socket;
+    ## Relay all index.php requests to fastcgi.
+    location = /index.php {
+        fastcgi_pass phpcgi;
     }
+
+    ## Relay all piwik.php requests to fastcgi.
+    location = /piwik.php {
+        fastcgi_pass phpcgi;
+    }
+    
 
     ## Any other attempt to access PHP files returns a 404.
     location ~* ^.+\.php$ {
         return 404; 
     }
     
-    # Return a 404 for all text files.
+    ## Return a 404 for all text files.
     location ~* ^/(?:README|LICENSE[^.]*|LEGALNOTICE)(?:\.txt)*$ {
         return 404;        
     }

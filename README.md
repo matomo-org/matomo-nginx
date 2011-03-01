@@ -22,6 +22,20 @@
 
    5. IPv6 and IPv4 support.
 
+   6. Possibility of using **Apache** as a backend for dealing with
+      PHP. Meaning using Nginx as
+      [reverse proxy](http://wiki.nginx.org/HttpProxyModule "Nginx Proxy Module").
+
+
+## Nginx as a Reverse Proxy: Proxying to Apache for PHP
+
+   If you **absolutely need** to use the rather _bad habit_ of
+   deploying web apps relying on `.htaccess`, or you just want to use
+   Nginx as a reverse proxy. The config allows you to do so. Note that
+   this provides some benefits over using only Apache, since Nginx is
+   much faster than Apache. Furthermore you can use the proxy cache
+   and/or use Nginx as a load balancer. 
+
 ## Installation
 
    1. Move the old `/etc/nginx` directory to `/etc/nginx.old`.
@@ -36,7 +50,24 @@
    
    4. Setup the PHP handling method. It can be:
    
-      + Upstream HTTP server like Apache with mod_php
+      + Upstream HTTP server like Apache with mod_php. To use this
+        method comment out the 
+          `include upstream_phpcgi.conf;`
+        line in `nginx.conf` and uncomment the lines:
+        
+            include reverse_proxy.conf;
+            include upstream_phpapache.conf;
+
+        Now you must set the proper address and port for your
+        backend(s) in the `upstream_phpapache.conf`. By default it
+        assumes the loopback `127.0.0.1` interface on port
+        `8080`. Adjust accordingly to reflect your setup.
+
+        Comment out **all**  `fastcgi_pass` directives in either
+        `drupal_boost.conf` or `drupal_boost_drush.conf`, depending
+        which config layout you're using. Uncomment out all the
+        `proxy_pass` directives. They have a comment around them,
+        stating these instructions.
       
       + FastCGI process using php-cgi. In this case an
         [init script](https://github.com/perusio/php-fastcgi-debian-script
