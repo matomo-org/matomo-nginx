@@ -38,7 +38,9 @@ server {
             return 444;
         }
         expires max;
-        break;
+        ## No need to bleed constant updates. Send the all shebang in one
+        ## fell swoop.
+        tcp_nodelay off;
     }
 
     ## Support for favicon. Return a 204 (No Content) if the favicon
