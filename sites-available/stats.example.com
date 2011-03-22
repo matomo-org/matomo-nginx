@@ -84,4 +84,3 @@ server {
     # 	root   /var/www/nginx-default;
     # }
 } # server
-
