@@ -127,7 +127,7 @@
    localhost and non-routable IPs of the 192.168.1.0 network.
     
    To enable the status and ping pages uncomment the line in the
-   `example.com` virtual host configuration file.
+   `stats.example.com` virtual host configuration file.
 
 
 ## Valid referers and resource usage constraining
