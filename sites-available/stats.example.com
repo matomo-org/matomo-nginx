@@ -19,8 +19,9 @@ server {
     access_log  /var/log/nginx/stats.example.com_access.log;
     error_log   /var/log/nginx/stats.example.com_error.log;
 
-    ## Include the blacklist.conf file.
-    include sites-available/blacklist.conf;
+    ## By default the blacklist of User Agents is disabled. Uncomment
+    ## to enable.
+    # include sites-available/blacklist.conf;
 
     ## Disable all methods besides HEAD, GET and POST.
     if ($request_method !~ ^(GET|HEAD|POST)$ ) {

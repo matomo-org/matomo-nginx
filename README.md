@@ -23,7 +23,7 @@
    5. IPv6 and IPv4 support.
 
    6. Possibility of using **Apache** as a backend for dealing with
-      PHP. Meaning using Nginx as
+      PHP. Meaning using Nginx as a
       [reverse proxy](http://wiki.nginx.org/HttpProxyModule "Nginx Proxy Module").
 
 
@@ -35,7 +35,7 @@
    this provides some benefits over using only Apache, since Nginx is
    much faster than Apache. Furthermore you can use the proxy cache
    and/or use Nginx as a load balancer. 
-
+ 
 ## Installation
 
    1. Move the old `/etc/nginx` directory to `/etc/nginx.old`.
@@ -147,8 +147,24 @@
    results for a particular site where you have Piwik enabled, then
    first check for the `valid_referers` block. To see if that host is
    enumerated there.
-   
-   
+
+## Blacklisting User Agents
+
+  There are some serious issues with some User Agents ou there. Some
+  are operated in a bandiwth hogging fashion. Implementing bots that
+  use and abuse the site bandwith. More serious yet is when the User
+  Agent is used for exploits. Trying to penetrate/crack the site
+  through crafted scritps running under the cloack of a _well meaning_
+  bot.
+  
+  There's a blacklist of User Agents that is disabled by default. You
+  have to **enable it** explicitly. 
+  
+  Uncomment the `include sites-available/blacklist.conf` line in the
+  `stats.example.com` vhost configuration file to enable User Agent
+  blacklisting. Of course you edit/add your own list of blacklisted
+  User Agents.
+  
 ## Getting the latest Nginx packaged for Debian or Ubuntu
 
    I maintain a [debian repository](http://debian.perusio.net/unstable
