@@ -3,33 +3,33 @@
 ## Introduction 
 
    This is a nginx configuration for running [Piwik](http://piwik.org "Piwik").
-   It assumes that the domain affect to Piwik is `stats.example.com`.
+   It assumes that the domain assigned to Piwik is `stats.example.com`.
 
-   Change accordingly to reflect your server setup.
+   Change this according to your server setup.
 
 ## Features
 
    1. Filtering of invalid HTTP `Host` headers.
 
-   2. Filtering of referrer when serving the piwik JS or any other
-      static file.
+   2. Filtering of referrer when serving the Piwik JS or any other
+      static files.
 
    3. Hiding of all text files.
 
-   4. Constraining of PHP file handling. Only `index.php` and
+   4. Restricted handling of PHP files. Only `index.php` and
       `piwik.php` are allowed. All other attempts to run a PHP file
       return a 404.
 
    5. IPv6 and IPv4 support.
 
    6. Possibility of using **Apache** as a backend for dealing with
-      PHP. Meaning using Nginx as a
+      PHP. This means using Nginx as a
       [reverse proxy](http://wiki.nginx.org/HttpProxyModule "Nginx Proxy Module").
 
 
 ## Nginx as a Reverse Proxy: Proxying to Apache for PHP
 
-   If you **absolutely need** to use the rather _bad habit_ of
+   This applies if you **absolutely need** to use the rather _bad habit_ of
    deploying web apps relying on `.htaccess`, or you just want to use
    Nginx as a reverse proxy. The config allows you to do so. Note that
    this provides some benefits over using only Apache, since Nginx is
@@ -42,10 +42,10 @@
    
    2. Clone the git repository from github:
    
-      `git clone https://github.com/perusio/piwik-nginx.git`
+      `git clone https://github.com/perusio/piwik-nginx.git /etc/nginx`
    
    3. Edit the `sites-available/stats.example.com` configuration file to
-      suit your requirements. Namely replacing stats.example.com with
+      suit your needs. Especially replace stats.example.com with
       **your** domain.
    
    4. Setup the PHP handling method. It can be:
@@ -65,7 +65,7 @@
 
         Comment out **all**  `fastcgi_pass` directives in either
         `drupal_boost.conf` or `drupal_boost_drush.conf`, depending
-        which config layout you're using. Uncomment out all the
+        which config layout you are using. Uncomment out all the
         `proxy_pass` directives. They have a comment around them,
         stating these instructions.
       
@@ -113,8 +113,8 @@
 ## Acessing the php-fpm status and ping pages
 
    You can get the
-   [status and a ping](http://forum.nginx.org/read.php?3,56426) pages
-   for the running instance of `php-fpm`. There's a
+   [status and ping](http://forum.nginx.org/read.php?3,56426) pages
+   for the running instance of `php-fpm`. There is a
    `php_fpm_status.conf` file with the configuration for both
    features.
    
@@ -122,7 +122,7 @@
      
    + the **ping page** at `/ping`.
 
-   For obvious reasons these pages are acessed only from a given set
+   For obvious reasons access to these pages is restricted to a given set
    of IP addresses. In the suggested configuration only from
    localhost and non-routable IPs of the 192.168.1.0 network.
     
@@ -130,57 +130,57 @@
    `stats.example.com` virtual host configuration file.
 
 
-## Valid referers and resource usage constraining
+## Valid referrers and resource usage constraining
 
-   Note that this configuration assumes that you're stating exactly
+   Note that this configuration assumes that you are stating exactly
    **which** hosts can use your Piwik installation. In the example
    config, for all static files, i.e., images, Javascript, Flash and
-   CSS there's a `valid_referers` block where all allowed hosts are
+   CSS there is a `valid_referers` block where all allowed hosts are
    enumerated. You should replace the `*.mysite.com` and
    `othersite.com` with the hosts where you want Piwik to be used for
    analytics.
    
-   If that's too much of an hassle for you, then just comment out the
+   If that is too much of an hassle for you, then just comment out the
    `valid_referers` block.
    
-   If you're using this configuration and you're not getting any
+   If you are using this configuration and you are not getting any
    results for a particular site where you have Piwik enabled, then
    first check for the `valid_referers` block. To see if that host is
    enumerated there.
 
 ## Blacklisting User Agents
 
-  There are some serious issues with some User Agents ou there. Some
-  are operated in a bandiwth hogging fashion. Implementing bots that
-  use and abuse the site bandwith. More serious yet is when the User
+  There are some serious issues with some User Agents out there. Some
+  are operated in a bandwidth hogging fashion. Implementing bots that
+  use and abuse the site is bandwidth. Even more serious is when the User
   Agent is used for exploits. Trying to penetrate/crack the site
-  through crafted scritps running under the cloack of a _well meaning_
+  through crafted scripts running under the cloak of a _well meaning_
   bot.
   
-  There's a blacklist of User Agents that is disabled by default. You
+  There is a blacklist of User Agents that is disabled by default. You
   have to **enable it** explicitly. 
   
   Uncomment the `include sites-available/blacklist.conf` line in the
   `stats.example.com` vhost configuration file to enable User Agent
-  blacklisting. Of course you edit/add your own list of blacklisted
+  blacklisting. Of course you can define your own list of blacklisted
   User Agents.
   
 ## Getting the latest Nginx packaged for Debian or Ubuntu
 
-   I maintain a [debian repository](http://debian.perusio.net/unstable
-   "my debian repo") with the
+   I maintain a [Debian repository](http://debian.perusio.net/unstable
+   "my Debian repo") with the
    [latest](http://nginx.org/en/download.html "Nginx source download")
    version of Nginx. This is packaged for Debian **unstable** or
    **testing**. The instructions for using the repository are
    presented on this [page](http://debian.perusio.net/debian.html
    "Repository instructions").
  
-   It may work or not on Ubuntu. Since Ubuntu seems to appreciate more
+   It may work on Ubuntu. Since Ubuntu seems to appreciate more
    finding semi-witty names for their releases instead of making clear
-   what's the status of the software included. Is it
+   what is the status of the software included. Is it
    **stable**? Is it **testing**? Is it **unstable**? The package may
    work with your currently installed environment or not. I don't have
-   the faintest idea which release to advise. So you're on your
+   the faintest idea which release to advise. So you are on your
    own. Generally the APT machinery will sort out for you any
    dependencies issues that might exist.
 
