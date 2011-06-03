@@ -148,7 +148,7 @@
    first check for the `valid_referers` block. To see if that host is
    enumerated there.
 
-## Blacklisting User Agents
+## Blacklisting User Agents and Referers
 
   There are some serious issues with some User Agents out there. Some
   are operated in a bandwidth hogging fashion. Implementing bots that
@@ -157,13 +157,17 @@
   through crafted scripts running under the cloak of a _well meaning_
   bot.
   
-  There is a blacklist of User Agents that is disabled by default. You
-  have to **enable it** explicitly. 
+  The same applies to Referers where shady sites sent traffic to you
+  that only hijacks the bandwith and curtail the correct usage of
+  Piwik.
   
-  Uncomment the `include sites-available/blacklist.conf` line in the
-  `stats.example.com` vhost configuration file to enable User Agent
-  blacklisting. Of course you can define your own list of blacklisted
-  User Agents.
+  There is a blacklist of User Agents and Referers that is disabled by
+  default. You have to **enable it** explicitly.
+  
+  Uncomment the `include blacklist.conf` line in the `nginx.conf`
+  configuration file to enable User Agent and Referer blacklisting. Of
+  course you can define your own list of blacklisted User Agents.
+  
   
 ## Getting the latest Nginx packaged for Debian or Ubuntu
 

@@ -16,20 +16,28 @@ server {
     server_name stats.example.com;
 
     ## Parameterization using hostname of access and log filenames.
-    access_log  /var/log/nginx/stats.example.com_access.log;
-    error_log   /var/log/nginx/stats.example.com_error.log;
+    access_log /var/log/nginx/stats.example.com_access.log;
+    error_log /var/log/nginx/stats.example.com_error.log;
 
-    ## By default the blacklist of User Agents is disabled. Uncomment
-    ## to enable.
-    # include sites-available/blacklist.conf;
+    
 
-    ## Disable all methods besides HEAD, GET and POST.
-    if ($request_method !~ ^(GET|HEAD|POST)$ ) {
-        return 444;
-    }
-
-    root  /var/www/sites/stats.example.com/;
-    index  index.php index.html;
+    ## See the blacklist.conf file at the parent dir: /etc/nginx.
+    ## Deny access based on the User-Agent header.
+    
+    ## -> Uncomment the lines below to enable bad bot blocking based
+    ## on UA string.
+    # if ($bad_bot) {
+    #     return 444;
+    # }
+    ## -> Uncomment the lines below to enable bad bot blocking based
+    ## on referer header.
+    ## Deny access based on the Referer header.
+    # if ($bad_referer) {
+    #     return 444;
+    # }
+    
+    root /var/www/sites/stats.example.com/;
+    index index.php index.html;
 
     ## Disallow any usage of piwik assets if referer is non valid.
     location ~* ^.+\.(?:jpg|png|css|gif|jpeg|js|swf)$ {
