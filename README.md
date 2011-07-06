@@ -44,9 +44,9 @@
    
       `git clone https://github.com/perusio/piwik-nginx.git /etc/nginx`
    
-   3. Edit the `sites-available/stats.example.com` configuration file to
-      suit your needs. Especially replace stats.example.com with
-      **your** domain.
+   3. Edit the `sites-available/stats.example.com.conf` configuration
+      file to suit your needs. Especially replace stats.example.com
+      with **your** domain.
    
    4. Setup the PHP handling method. It can be:
    
@@ -133,7 +133,7 @@
    localhost and non-routable IPs of the 192.168.1.0 network.
     
    To enable the status and ping pages uncomment the line in the
-   `stats.example.com` virtual host configuration file.
+   `stats.example.com.conf` virtual host configuration file.
 
 
 ## Valid referrers and resource usage constraining
