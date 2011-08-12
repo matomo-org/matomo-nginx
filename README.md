@@ -121,23 +121,25 @@
 
 ## Acessing the php-fpm status and ping pages
 
-   You can get the
-   [status and ping](http://forum.nginx.org/read.php?3,56426) pages
-   for the running instance of `php-fpm`. There is a
-   `php_fpm_status.conf` file with the configuration for both
-   features.
+You can get the
+[status and ping](http://forum.nginx.org/read.php?3,56426) pages for
+the running instance of `php-fpm`. There is a `php_fpm_status.conf`
+file with the configuration for both features.
    
-   + the **status page** at `/fpm-status`;
+ + the **status page** at `/fpm-status`;
      
-   + the **ping page** at `/ping`.
+ + the **ping page** at `/ping`.
 
-   For obvious reasons access to these pages is restricted to a given set
-   of IP addresses. In the suggested configuration only from
-   localhost and non-routable IPs of the 192.168.1.0 network.
+For obvious reasons access to these pages is restricted to a given set
+of IP addresses. In the suggested configuration only from localhost
+and non-routable IPs of the 192.168.1.0 network.
+
+The allowed hosts are defined in a geo block in file
+`php_fpm_status_allowed_hosts.conf`. You should edit the predefined IP
+addresses to suit your setup.
     
-   To enable the status and ping pages uncomment the line in the
-   `stats.example.com.conf` virtual host configuration file.
-
+To enable the status and ping pages uncomment the line in the
+`stats.example.com.conf` virtual host configuration file.
 
 ## Valid referrers and resource usage constraining
 
