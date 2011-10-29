@@ -24,8 +24,12 @@
 
    6. Possibility of using **Apache** as a backend for dealing with
       PHP. This means using Nginx as a
-      [reverse proxy](http://wiki.nginx.org/HttpProxyModule "Nginx Proxy Module").
-
+      [reverse proxy](http://wiki.nginx.org/HttpProxyModule "Nginx
+      Proxy Module").
+   
+   7. Static files use the OS [buffer cache](http://wiki.nginx.org/HttpCoreModule#open_file_cache).
+   
+   8. `piwik.php` is cached. Hence faster to register an access.
 
 ## Nginx as a Reverse Proxy: Proxying to Apache for PHP
 
@@ -99,8 +103,12 @@
       `php-fpm` and that you should **change** to reflect your setup
       by editing `upstream_phpcgi.conf`.
 
+   5. Create the `/var/cache/nginx/fcgicache` directory if you're
+      serving PHP with php-fpm or php cgi. This directory must be
+      owned by the unpriveleged nginx user. In debian it's `www-data`.
+      
 
-   5. Create the `/etc/nginx/sites-enabled` directory and enable the
+   6. Create the `/etc/nginx/sites-enabled` directory and enable the
       virtual host using one of the methods described below.
     
       Note that if you're using the
@@ -109,15 +117,15 @@
       directory if it doesn't exist the first time you run it for
       enabling a site.
     
-   6. Reload Nginx:
+   7. Reload Nginx:
    
       `/etc/init.d/nginx reload`
    
-   7. Check that your site is working using your browser.
+   8. Check that your site is working using your browser.
    
-   8. Remove the `/etc/nginx.old` directory.
+   9. Remove the `/etc/nginx.old` directory.
    
-   9. Done.
+   10. Done.
 
 ## Acessing the php-fpm status and ping pages
 
