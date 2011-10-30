@@ -67,11 +67,10 @@
         assumes the loopback `127.0.0.1` interface on port
         `8080`. Adjust accordingly to reflect your setup.
 
-        Comment out **all**  `fastcgi_pass` directives in either
-        `drupal_boost.conf` or `drupal_boost_drush.conf`, depending
-        which config layout you are using. Uncomment out all the
-        `proxy_pass` directives. They have a comment around them,
-        stating these instructions.
+        Comment out **all** `fastcgi_pass` directives in
+        `stats.example.com.conf` Uncomment out all the `proxy_pass`
+        directives. They have a comment around them, stating these
+        instructions.
       
       + FastCGI process using php-cgi. In this case an
         [init script](https://github.com/perusio/php-fastcgi-debian-script
@@ -103,10 +102,20 @@
       `php-fpm` and that you should **change** to reflect your setup
       by editing `upstream_phpcgi.conf`.
 
-   5. Create the `/var/cache/nginx/fcgicache` directory if you're
-      serving PHP with php-fpm or php cgi. This directory must be
-      owned by the unpriveleged nginx user. In debian it's `www-data`.
+   5. Setup the cache for `piwik.php`. It depends if you use either
+      FastCGI or Apache for processing PHP.
+   
+      + **FastCGI**: Create the `/var/cache/nginx/fcgicache` directory
+      if you're serving PHP with php-fpm or php cgi. This directory
+      must be owned by the unpriveleged nginx user. In debian it's
+      `www-data`.
       
+      + **Apache**: Create the `/var/cache/nginx/proxycache` directory
+      if you're serving PHP with Apache. This directory must be owned
+      by the unpriveleged nginx user. In debian it's
+      `www-data`. Comment out all the lines where `fcgi_cache` is
+      referenced. You must uncomment the line `include
+      proxy_cache_zone.conf;` on `nginx.conf`.
 
    6. Create the `/etc/nginx/sites-enabled` directory and enable the
       virtual host using one of the methods described below.
