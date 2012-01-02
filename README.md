@@ -29,7 +29,13 @@
    
    7. Static files use the OS [buffer cache](http://wiki.nginx.org/HttpCoreModule#open_file_cache).
    
-   8. `piwik.php` is cached. Hence faster to register an access.
+   8. Caching of most Piwik pages with exceptions for the installation
+      and administrative tasks.
+   
+   9. `piwik.php` is cached with a long TTL (2h). Hence faster to
+      register an access.
+      
+   10. Inline `robots.txt` that disables all crawling.  
 
 ## Nginx as a Reverse Proxy: Proxying to Apache for PHP
 
@@ -136,6 +142,28 @@
    
    10. Done.
 
+## Caching starus
+   
+   You can check if the responses are being cached or not. For the
+   short term cache check for a `X-Piwik-Cache` header with a
+   `HIT/EXPIRED/MISS/UPDATING/STALE` value. The same applies to the
+   long cache: check for a `X-Piwik-Long-Cache` header with a
+   `HIT/EXPIRED/MISS/UPDATING/STALE` value.
+
+   Example: 
+   
+       curl -I stats.example.com/piwik.php
+       HTTP/1.1 200 OK
+       Server: nginx
+       Date: Mon, 02 Jan 2012 13:17:15 GMT
+       Content-Type: text/html
+       Connection: keep-alive
+       Keep-Alive: timeout=10
+       Vary: Accept-Encoding
+       Expires: Thu, 01 Jan 1970 00:00:01 GMT
+       Cache-Control: no-cache
+       X-Piwik-Long-Cache: MISS
+
 ## Acessing the php-fpm status and ping pages
 
 You can get the
@@ -196,10 +224,9 @@ To enable the status and ping pages uncomment the line in the
   configuration file to enable User Agent and Referer blacklisting. Of
   course you can define your own list of blacklisted User Agents.
   
-  
 ## Getting the latest Nginx packaged for Debian or Ubuntu
 
-   I maintain a [Debian repository](http://debian.perusio.net/unstable
+   There's a [Debian repository](http://debian.perusio.net/unstable
    "my Debian repo") with the
    [latest](http://nginx.org/en/download.html "Nginx source download")
    version of Nginx. This is packaged for Debian **unstable** or
@@ -216,8 +243,7 @@ To enable the status and ping pages uncomment the line in the
    own. Generally the APT machinery will sort out for you any
    dependencies issues that might exist.
 
-
-## My other Nginx configs on github
+## Other Nginx configs on github
 
    + [Drupal](https://github.com/perusio/drupal-with-nginx "Drupal
      Nginx configuration")
@@ -230,9 +256,15 @@ To enable the status and ping pages uncomment the line in the
 
 ## Securing your PHP configuration
 
-   I have created a small shell script that parses your `php.ini` and
+   There's a small shell script that parses your `php.ini` and
    sets a sane environment, be it for **development** or
    **production** settings. 
    
    Grab it [here](https://github.com/perusio/php-ini-cleanup "PHP
    cleanup script").
+
+## Authors
+
+   This configuration is maintained by
+   [celogeek](https://github.com/geistteufel) and
+   [perusio](https://github.com/perusio).
