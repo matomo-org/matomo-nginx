@@ -142,7 +142,7 @@
    
    10. Done.
 
-## Caching starus
+## Caching status
    
    You can check if the responses are being cached or not. For the
    short term cache check for a `X-Piwik-Cache` header with a
@@ -253,6 +253,9 @@ To enable the status and ping pages uncomment the line in the
      
    + [Chive](https://github.com/perusio/chive-nginx "Chive Nginx
      configuration")
+
+   + [SquirrelMail](https://github.com/perusio/squirrelmail-nginx
+     "SquirrelMail Nginx configuration")
 
 ## Securing your PHP configuration
 
