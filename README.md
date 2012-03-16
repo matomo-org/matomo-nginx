@@ -45,7 +45,15 @@
    this provides some benefits over using only Apache, since Nginx is
    much faster than Apache. Furthermore you can use the proxy cache
    and/or use Nginx as a load balancer. 
- 
+
+## IPv6 and IPv4
+
+The configuration of the example vhosts uses **separate** sockets for
+IPv6 and IPv4. This way is simpler for those not (yet) having IPv6
+support to disabli it by commenting out the
+[`listen`](http://nginx.org/en/docs/http/ngx_http_core_module.html#listen)
+directive relative to IPv6.
+
 ## Installation
 
    1. Move the old `/etc/nginx` directory to `/etc/nginx.old`.
