@@ -281,6 +281,15 @@ To enable the status and ping pages uncomment the line in the
    Grab it [here](https://github.com/perusio/php-ini-cleanup "PHP
    cleanup script").
 
+## Keeping PHP always running
+
+   php-fpm is hardly perfect, or better said, it happens quite often
+   that PHP has extremely long running processes that can completely
+   clog PHP processing. To obviate that I've created a shell script
+   that relaunches php-fpm whenever PHP hangs.
+   
+   Grab it [here](https://github.com/perusio/php-relaunch-web).
+
 ## Authors
 
    This configuration is maintained by
