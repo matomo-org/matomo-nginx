@@ -70,11 +70,10 @@ replace** the indicated address by **your** address.
     file to suit your needs. Especially replace stats.example.com
     with **your** domain.
    
- 4. Setup the PHP handling method. It can be:
-   
-    + Upstream HTTP server like Apache with mod_php. To use this
-      method comment out the `include upstream_phpcgi.conf;`
-      line in `nginx.conf` and uncomment the lines:
+ 4. Setup the PHP handling method. It can be:   
+   + Upstream HTTP server like Apache with mod_php. To use this
+     method comment out the `include upstream_phpcgi.conf;`
+     line in `nginx.conf` and uncomment the lines:
         
           include reverse_proxy.conf;
           include upstream_phpapache.conf;
