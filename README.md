@@ -72,8 +72,7 @@ replace** the indicated address by **your** address.
    
  4. Setup the PHP handling method. It can be:
    
-
-   + Upstream HTTP server like Apache with mod_php. To use this
+    + Upstream HTTP server like Apache with mod_php. To use this
       method comment out the `include upstream_phpcgi.conf;`
       line in `nginx.conf` and uncomment the lines:
         
@@ -90,13 +89,13 @@ replace** the indicated address by **your** address.
       directives. They have a comment around them, stating these
       instructions.
       
-   + FastCGI process using php-cgi. In this case an
+    + FastCGI process using php-cgi. In this case an
       [init script](https://github.com/perusio/php-fastcgi-debian-script
       "Init script for php-cgi") is
       required. This is how the server is configured out of the
         box. It uses UNIX sockets. You can use TCP sockets if you prefer.
       
-   + [PHP FPM](http://www.php-fpm.org "PHP FPM"), this requires you
+    + [PHP FPM](http://www.php-fpm.org "PHP FPM"), this requires you
       to configure your fpm setup, in Debian/Ubuntu this is done in
       the `/etc/php5/fpm` directory.
         
@@ -121,8 +120,7 @@ replace** the indicated address by **your** address.
       by editing `upstream_phpcgi.conf`.
 
  5. Setup the cache for `piwik.php`. It depends if you use either
-    FastCGI or Apache for processing PHP.
-   
+    FastCGI or Apache for processing PHP.   
     + **FastCGI**: Create the `/var/cache/nginx/fcgicache` directory
       if you're serving PHP with php-fpm or php cgi. This directory
       must be owned by the unpriveleged nginx user. In debian it's
