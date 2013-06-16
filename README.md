@@ -86,14 +86,12 @@ replace** the indicated address by **your** address.
       Comment out **all** `fastcgi_pass` directives in
       `stats.example.com.conf` Uncomment out all the `proxy_pass`
       directives. They have a comment around them, stating these
-      instructions.
-      
+      instructions.      
    + FastCGI process using php-cgi. In this case an
      [init script](https://github.com/perusio/php-fastcgi-debian-script
      "Init script for php-cgi") is
      required. This is how the server is configured out of the
-     box. It uses UNIX sockets. You can use TCP sockets if you prefer.
-      
+     box. It uses UNIX sockets. You can use TCP sockets if you prefer.     
    + [PHP FPM](http://www.php-fpm.org "PHP FPM"), this requires you
      to configure your fpm setup, in Debian/Ubuntu this is done in
      the `/etc/php5/fpm` directory.
@@ -119,14 +117,12 @@ replace** the indicated address by **your** address.
       by editing `upstream_phpcgi.conf`.
 
  5. Setup the cache for `piwik.php`. It depends if you use either
-    FastCGI or Apache for processing PHP.   
-    
-   + **FastCGI**: Create the `/var/cache/nginx/fcgicache` directory
+    FastCGI or Apache for processing PHP.       
+  + **FastCGI**: Create the `/var/cache/nginx/fcgicache` directory
       if you're serving PHP with php-fpm or php cgi. This directory
       must be owned by the unpriveleged nginx user. In debian it's
-      `www-data`.
-      
-   + **Apache**: Create the `/var/cache/nginx/proxycache` directory
+      `www-data`.    
+  + **Apache**: Create the `/var/cache/nginx/proxycache` directory
       if you're serving PHP with Apache. This directory must be owned
       by the unpriveleged nginx user. In debian it's
       `www-data`. Comment out all the lines where `fcgi_cache` is
