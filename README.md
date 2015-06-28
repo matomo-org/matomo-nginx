@@ -90,11 +90,12 @@ replace** the indicated address by **your** address.
    + FastCGI process using php-cgi. In this case an
      [init script](https://github.com/perusio/php-fastcgi-debian-script
      "Init script for php-cgi") is
-     required. This is how the server is configured out of the
-     box. It uses UNIX sockets. You can use TCP sockets if you prefer.     
-   + [PHP FPM](http://www.php-fpm.org "PHP FPM"), this requires you
-     to configure your fpm setup, in Debian/Ubuntu this is done in
-     the `/etc/php5/fpm` directory.
+     required. 
+   + [PHP FPM](http://www.php-fpm.org "PHP FPM"), this requires you to
+     configure your fpm setup, in Debian/Ubuntu this is done in the
+     `/etc/php5/fpm` directory. This is how the server is configured
+     out of the box. It uses UNIX sockets. You can use TCP sockets if
+     you prefer.
         
      Look [here](https://github.com/perusio/php-fpm-example-config) for
      an **example configuration** of `php-fpm`.
