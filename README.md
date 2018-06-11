@@ -62,7 +62,7 @@ replace** the indicated address by **your** address.
 
  1. Move the old `/etc/nginx` directory to `/etc/nginx.old`.
    
- 2. Clone the git repository from github:
+ 2. Clone the git repository from GitHub:
    
     `git clone https://github.com/perusio/piwik-nginx.git /etc/nginx`
    
