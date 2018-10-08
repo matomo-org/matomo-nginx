@@ -12,7 +12,7 @@ In this case it should be enough to just take the `sites-available/matomo.conf`,
 - clone this repostitory or [download it as a zip](https://github.com/Findus23/nginx/archive/master.zip) then move its content to `/etc/nginx/` (or wherever you store your nginx-config)
 - read through the `sites-available/matomo.conf` and modify the settings to fit your use case:
 	- set `server_name` to the domain(s) of your Matomo instance
-	- set the path to your SSL certificate (I really recommend you to make sure your Matomo instance is only reachable via HTTPS. If you don't have a SSL certificate for your domain yet, check out [Let's Encrypt](https://letsencrypt.org/).)
+	- set the path to your SSL certificate (I really recommend you to make sure your Matomo instance is only reachable via HTTPS. If you don't have an SSL certificate for your domain yet, check out [Let's Encrypt](https://letsencrypt.org/).)
 	- do you want to support old browsers? Then you'll need to modify `ssl.conf` accoring to your need. (the [Mozilla SSL Config Generator](https://mozilla.github.io/server-side-tls/ssl-config-generator/) will help you)
 	- replace `/var/www/matomo/` with the path to your Matomo instance
 - configure PHP (this depends on your OS and PHP setup)
@@ -20,5 +20,5 @@ In this case it should be enough to just take the `sites-available/matomo.conf`,
 	- you can also specify a TCP port
 - go to the `sites-enabled` folder of your nginx config directory
 - enable the Matomo config by creating a symlink: `sudo ln -s ../sites-available/matomo.conf`
-- test if there is an syntax error in your config: `sudo nginx -t`
+- test if there is a syntax error in your config: `sudo nginx -t`
 - restart nginx: `sudo systemctl restart`
