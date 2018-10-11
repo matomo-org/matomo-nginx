@@ -9,7 +9,7 @@ In this case it should be enough to just take the `sites-available/matomo.conf`,
 
 ## I want to get started
 
-- clone this repostitory or [download it as a zip](https://github.com/Findus23/nginx/archive/master.zip) then move its content to `/etc/nginx/` (or wherever you store your nginx-config)
+- clone this repostitory or [download it as a zip](https://github.com/matomo-org/matomo-nginx/archive/master.zip) then move its content to `/etc/nginx/` (or wherever you store your nginx-config)
 - read through the `sites-available/matomo.conf` and modify the settings to fit your use case:
 	- set `server_name` to the domain(s) of your Matomo instance
 	- set the path to your SSL certificate (I really recommend you to make sure your Matomo instance is only reachable via HTTPS. If you don't have an SSL certificate for your domain yet, check out [Let's Encrypt](https://letsencrypt.org/).)
