@@ -25,3 +25,19 @@ In this case it should be enough to just take the `sites-available/matomo.conf`,
 
 
 If you need to check the legacy nginx Matomo configuration, you can find it here: https://github.com/matomo-org/matomo-nginx/tree/1.0.99
+
+## Tips
+
+- never use Matomo without HTTPS
+- make sure you have configured Nginx to only accept modern and secure cryptography
+	- check your website with https://www.ssllabs.com/ssltest/
+	- compare your Nginx config with the "modern" template from https://mozilla.github.io/server-side-tls/ssl-config-generator/
+	- this template is used by default in the `ssl.conf` file
+	- decide if keeping outdated chiphers and TLS protocolls enabled to be able to track ancient browser is worth the risk of a downgrade attack for all your vistors (and admins)
+	- never support SSLv3 and think about disabling TLSv1 and TLSv1.1
+- add `server_tokens off;` to your config to disable the `server: nginx` header on all requests and the nginx version on error pages
+- if you have enabled gzip compression (which improves performance greatly), be aware of the [BREACH](https://en.wikipedia.org/wiki/BREACH) vulnerability
+- think about enabling the [`Strict-Transport-Security`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security) header, but keep in mind the implications
+- keep HTTP/2 enabled as it brings performance benifits with many small files (e.g. icons)
+
+You know how to improve this config? Open a pull request or GitHub issue!
