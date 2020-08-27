@@ -21,7 +21,7 @@ In this case it should be enough to just take the `sites-available/matomo.conf`,
 - go to the `sites-enabled` folder of your nginx config directory
 - enable the Matomo config by creating a symlink: `sudo ln -s ../sites-available/matomo.conf`
 - test if there is a syntax error in your config: `sudo nginx -t`
-- restart nginx: `sudo systemctl restart`
+- restart nginx: `sudo systemctl restart nginx`
 
 
 If you need to check the legacy nginx Matomo configuration, you can find it here: https://github.com/matomo-org/matomo-nginx/tree/1.0.99
